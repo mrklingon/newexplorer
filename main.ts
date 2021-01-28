@@ -44,7 +44,7 @@ input.onButtonPressed(Button.AB, function () {
     basic.showString("Q:")
     basic.showNumber(Quad)
     basic.pause(100)
-    buildStars()
+    getStars(Quad)
     showStars()
 })
 input.onButtonPressed(Button.B, function () {
