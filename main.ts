@@ -31,13 +31,13 @@ input.onButtonPressed(Button.A, function () {
     showStars()
 })
 input.onGesture(Gesture.LogoUp, function () {
-    Delta = 3
+    Delta = 5
 })
 input.onGesture(Gesture.TiltLeft, function () {
     Delta = -1
 })
 function buildUniverse () {
-    for (let index2 = 0; index2 <= 8; index2++) {
+    for (let index2 = 0; index2 <= 25; index2++) {
         buildStars()
         qStars.push(Stars)
         qMag.push(Magnitude)
@@ -46,7 +46,7 @@ function buildUniverse () {
 }
 input.onButtonPressed(Button.AB, function () {
     doWarp()
-    Quad = (Quad + Delta + 9) % 9
+    Quad = (Quad + Delta + 25) % 25
     Delta = 0
     basic.showString("Q:")
     basic.showNumber(Quad)
@@ -68,7 +68,7 @@ function getStars (num: number) {
     }
 }
 input.onGesture(Gesture.LogoDown, function () {
-    Delta = -3
+    Delta = -5
 })
 
 input.onGesture(Gesture.Shake, function () {
@@ -129,7 +129,7 @@ let qMag: number[][] = []
 let Mfound = 0
 let TypeList: string[] = []
 let Quad = 0
-Quad = 4
+Quad = 12
 doWarp()
 TypeList = ["D", "H", "J", "K", "L", "M", "N", "R", "T", "Y"]
 Mfound = 0
@@ -137,5 +137,5 @@ qMag = []
 qStars = []
 qTypes = []
 buildUniverse()
-getStars(4)
+getStars(12)
 showStars()
