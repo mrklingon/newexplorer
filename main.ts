@@ -30,6 +30,12 @@ input.onButtonPressed(Button.A, function () {
     basic.pause(100)
     showStars()
 })
+input.onGesture(Gesture.LogoUp, function () {
+    Delta = 3
+})
+input.onGesture(Gesture.TiltLeft, function () {
+    Delta = -1
+})
 function buildUniverse () {
     for (let index2 = 0; index2 <= 8; index2++) {
         buildStars()
@@ -38,7 +44,6 @@ function buildUniverse () {
         qTypes.push(Types)
     }
 }
-
 input.onButtonPressed(Button.AB, function () {
     doWarp()
     Quad = (Quad + Delta + 9) % 9
@@ -52,6 +57,9 @@ input.onButtonPressed(Button.AB, function () {
 input.onButtonPressed(Button.B, function () {
     doReport()
 })
+input.onGesture(Gesture.TiltRight, function () {
+    Delta = 1
+})
 function getStars (num: number) {
     if (num >= 0 && num <= 8) {
         Stars = qStars[num]
@@ -59,6 +67,13 @@ function getStars (num: number) {
         Types = qTypes[num]
     }
 }
+input.onGesture(Gesture.LogoDown, function () {
+    Delta = -3
+})
+
+input.onGesture(Gesture.Shake, function () {
+    Quad = randint(0,8)
+})
 function buildStars () {
     Types = []
     Stars = []
@@ -89,19 +104,6 @@ function doWarp () {
         . . . . . . . . . .
         `).scrollImage(1, 200)
 }
-
-input.onGesture(Gesture.TiltLeft, function () {
-    Delta = -1
-})
-input.onGesture(Gesture.TiltRight, function () {
-    Delta = 1
-})
-input.onGesture(Gesture.LogoUp, function () {
-    Delta = 3
-})
-input.onGesture(Gesture.LogoDown, function () {
-    Delta = -3
-})
 function showStars () {
     basic.showLeds(`
         . . . . .
@@ -116,7 +118,6 @@ function showStars () {
     }
 }
 let Delta = 0
-let Quad = 4
 let Magnitude: number[] = []
 let sy = 0
 let sx = 0
@@ -127,7 +128,8 @@ let qStars: number[][] = []
 let qMag: number[][] = []
 let Mfound = 0
 let TypeList: string[] = []
-
+let Quad = 0
+Quad = 4
 doWarp()
 TypeList = ["D", "H", "J", "K", "L", "M", "N", "R", "T", "Y"]
 Mfound = 0
