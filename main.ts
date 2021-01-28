@@ -97,10 +97,10 @@ input.onGesture(Gesture.TiltRight, function () {
     Delta = 1
 })
 input.onGesture(Gesture.LogoUp, function () {
-    Delta = -3
+    Delta = 3
 })
 input.onGesture(Gesture.LogoDown, function () {
-    Delta = 3
+    Delta = -3
 })
 function showStars () {
     basic.showLeds(`
