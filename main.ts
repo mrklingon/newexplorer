@@ -38,9 +38,11 @@ function buildUniverse () {
         qTypes.push(Types)
     }
 }
+
 input.onButtonPressed(Button.AB, function () {
     doWarp()
-    Quad = randint(0, 8)
+    Quad = (Quad + Delta + 9) % 9
+    Delta = 0
     basic.showString("Q:")
     basic.showNumber(Quad)
     basic.pause(100)
@@ -87,6 +89,19 @@ function doWarp () {
         . . . . . . . . . .
         `).scrollImage(1, 200)
 }
+
+input.onGesture(Gesture.TiltLeft, function () {
+    Delta = -1
+})
+input.onGesture(Gesture.TiltRight, function () {
+    Delta = 1
+})
+input.onGesture(Gesture.LogoUp, function () {
+    Delta = -3
+})
+input.onGesture(Gesture.LogoDown, function () {
+    Delta = 3
+})
 function showStars () {
     basic.showLeds(`
         . . . . .
@@ -100,7 +115,8 @@ function showStars () {
         led.plotBrightness(sx, sy, Magnitude[index4])
     }
 }
-let Quad = 0
+let Delta = 0
+let Quad = 4
 let Magnitude: number[] = []
 let sy = 0
 let sx = 0
@@ -111,6 +127,7 @@ let qStars: number[][] = []
 let qMag: number[][] = []
 let Mfound = 0
 let TypeList: string[] = []
+
 doWarp()
 TypeList = ["D", "H", "J", "K", "L", "M", "N", "R", "T", "Y"]
 Mfound = 0
@@ -118,5 +135,5 @@ qMag = []
 qStars = []
 qTypes = []
 buildUniverse()
-getStars(1)
+getStars(4)
 showStars()
