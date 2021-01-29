@@ -1,8 +1,11 @@
 function doReport () {
+    SRV = srvyD[Quad]
     for (let index = 0; index <= Stars.length - 1; index++) {
         basic.showString("" + (Types[index]))
         if ("M" == Types[index]) {
-            Mfound += 1
+            if (SRV == 0){
+                Mfound += 1
+            }
         }
         basic.showLeds(`
             . . . . .
@@ -16,6 +19,7 @@ function doReport () {
         basic.pause(500)
     }
     showStars()
+    srvyD[Quad] = 1
 }
 input.onButtonPressed(Button.A, function () {
     basic.showLeds(`
@@ -48,8 +52,16 @@ input.onButtonPressed(Button.AB, function () {
     doWarp()
     Quad = (Quad + Delta + 25) % 25
     Delta = 0
-    basic.showString("Q:")
-    basic.showNumber(Quad)
+    basic.showString("Q")
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        `)
+    qCoord(Quad)
+    led.plot(qx,qy)
     basic.pause(100)
     getStars(Quad)
     showStars()
@@ -85,8 +97,8 @@ function buildStars () {
     }
 }
 function findCoord (num: number) {
-    sx = Math.trunc(num / 5)
-    sy = num % 5
+    sy = Math.trunc(num / 5)
+    sx = num % 5
 }
 function doWarp () {
     images.createBigImage(`
@@ -104,6 +116,11 @@ function doWarp () {
         . . . . . . . . . .
         `).scrollImage(1, 200)
 }
+function qCoord(num: number){
+    qy = Math.trunc(num / 5)
+    qx = num % 5
+}
+
 function showStars () {
     basic.showLeds(`
         . . . . .
@@ -121,6 +138,8 @@ let Delta = 0
 let Magnitude: number[] = []
 let sy = 0
 let sx = 0
+let qx = 0
+let qy = 0
 let Types: string[] = []
 let Stars: number[] = []
 let qTypes: string[][] = []
@@ -131,6 +150,9 @@ let TypeList: string[] = []
 let Quad = 0
 Quad = 12
 doWarp()
+let SRV = 0 
+let srvyD: number[]
+srvyD = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 TypeList = ["D", "H", "J", "K", "L", "M", "N", "R", "T", "Y"]
 Mfound = 0
 qMag = []
