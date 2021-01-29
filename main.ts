@@ -73,7 +73,7 @@ input.onGesture(Gesture.TiltRight, function () {
     Delta = 1
 })
 function getStars (num: number) {
-    if (num >= 0 && num <= 8) {
+    if (num >= 0 && num <= 24) {
         Stars = qStars[num]
         Magnitude = qMag[num]
         Types = qTypes[num]
