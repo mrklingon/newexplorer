@@ -72,7 +72,7 @@ input.onGesture(Gesture.LogoDown, function () {
 })
 
 input.onGesture(Gesture.Shake, function () {
-    Quad = randint(0,8)
+    Quad = randint(0,24)
 })
 function buildStars () {
     Types = []
